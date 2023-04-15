@@ -6,7 +6,7 @@ const OrderDisplay = (props) => {
     console.log(props);
     const renderDate = (item) => {
         console.log('item.date ----: ', item.date)
-        if(item.date) return item.date.split('%')[0];
+        if(item.date) return 'Ordered On ' + item.date.split('%')[0];
         else return '';
     }
     const renderItems = ({ orderData }) => {
@@ -36,7 +36,7 @@ const OrderDisplay = (props) => {
                                     <span className="checkout-new-price">₹{item.new_price}</span>
                                 </div>
                                 <div className="delivered">
-                                    <div className="delivered-text">Delivered On {renderDate(item)}</div>
+                                    <div className="delivered-text">{renderDate(item)}</div>
                                 </div>
                             </div>
                         </Link>

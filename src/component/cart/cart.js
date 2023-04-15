@@ -159,6 +159,7 @@ class Cart extends React.Component {
                 let itemDesc = item.description.length > 35 ? item.description.substring(0, 35) + '...' : item.description;
                 return (
                     <div className="order-summary" key={item._id} style={{ margin: 'auto', display: 'block' }}>
+                        <Link to={`/details/${item.item_type}?${item.item_id}`}>
                         <form action="https://proud-erin-trout.cyclic.app/paynow" method="POST">
                             {/* all input type="hidden" is the actual data that is passed to paynow api */}
                             {/* <input type="hidden" name="order_id" value={this.state.id} /> */}
@@ -192,6 +193,7 @@ class Cart extends React.Component {
                                 <button type="submit" className="continue-btn" style={{ float: 'none' }} onClick={(event) => { this.placeOrder(item,event) }}>Place Order</button>
                             </div>
                         </form>
+                        </Link>
                     </div>
                 )
             })
