@@ -47,6 +47,7 @@ class Checkout extends Component {
         let item = this.state.item[0];
         console.log('item: ', item);
 
+        let d = new Date();
         let orderDetails = item;
         orderDetails.order_id = this.state.orderId;
         orderDetails.item_type = JSON.parse(sessionStorage.getItem('buyNow')).itemType;
@@ -56,8 +57,14 @@ class Checkout extends Component {
         orderDetails.name = this.state.userData.name;
         orderDetails.email = this.state.userData.email;
         orderDetails.phone = this.state.userData.phone;
+        orderDetails.date = d.getDay() + '/' + d.getMonth() + '/' + d.getFullYear();
+        orderDetails._id = (Math.random() * 99999999 * (d.getDay() + d.getMonth() + d.getFullYear() + Math.random() * 9999)).toFixed(0);
+            // '_id' is the unique id of this item in database, although MongoDB creates an _id by itself but I encountered that when ordering same item
+            // from same account, more than once, the mongoDB's algorithm creates same ID for the new order also
+            // this makes it give error 500 when placing the order (i.e. adding the data), because of the same id of new item as that of old one
+            // so i make an _id myself and use it, thereby overcoming the issue with mongodb
 
-        console.log(orderDetails);
+        console.log('The Order Details: ', orderDetails);
 
         // place the order
         fetch(placeOrderUrl, {
@@ -73,7 +80,15 @@ class Checkout extends Component {
                 if (response.status === 200)
                     console.log('order placed')
             })
+            .then(() => {
+                alert('Order Placed, Cash On Delivery Mode')
+                setTimeout(() => { 
+                this.props.history.push('/orders')
+                }, 2000)
+            })
+            .catch(err => console.log(err));
 
+        
     }
 
     changeAddress = (event) => {
@@ -216,7 +231,7 @@ class Checkout extends Component {
                 <div className="checkout-main">
                     <div className="login-done-left">
                         <p className="checkout-login-heading"><span>1</span>Login <i className="bi bi-check"></i></p>
-                        <p className="checkout-login-phone">+919876543210</p>
+                        <p className="checkout-login-phone">{this.state.userData.phone ? this.state.userData.phone : 9876543210}</p>
                     </div>
                     <div className="change1-btn">
                         <button className="change1">Change</button>
@@ -315,7 +330,8 @@ class Checkout extends Component {
                 // console.log('item before return: ', item);
                 // console.log('img: ', item.image);
                 return (
-                    <form action="https://proud-erin-trout.cyclic.app/paynow" method="POST">
+                    // <form action="https://proud-erin-trout.cyclic.app/paynow" method="POST">
+                    <form onSubmit={(event) => event.preventDefault()}>
                         {/* all input type="hidden" is the actual data that is passed to paynow api */}
                         {/* <input type="hidden" name="order_id" value={this.state.id} /> */}
                         <input type="hidden" name="id" value={this.state.orderId} />
