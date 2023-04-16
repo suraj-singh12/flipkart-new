@@ -4,15 +4,21 @@ This is a flipkart like e-commerce website.
 
 It uses all the MERN stack technologies to make it an actually functioning site like the real flipkart site.
 
+Check Live Deployments here:
+
+https://fkart-app.netlify.app/
+
+Or
+
+https://flipkart-app12.netlify.app/
+
+
 # To get started
 ## Clone the repo
 ```git
 git clone https://github.com/suraj-singh12/flipkart-new/
 ```
 
-```git  
-cd flipkart-new/flipkart-app
-```
 
 ## Dependencies 
 ```git
