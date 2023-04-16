@@ -1,4 +1,4 @@
-# flipkart-new
+# Fkart APP
 
 This is a flipkart like e-commerce website. 
 
