@@ -1,4 +1,4 @@
-# Flipkart-Project
+# flipkart-new
 
 This is a flipkart like e-commerce website. 
 
@@ -7,11 +7,11 @@ It uses all the MERN stack technologies to make it an actually functioning site 
 # To get started
 ## Clone the repo
 ```git
-git clone https://github.com/suraj-singh12/flipkart-project/
+git clone https://github.com/suraj-singh12/flipkart-new/
 ```
 
 ```git  
-cd flipkart-project/flipkart-app
+cd flipkart-new/flipkart-app
 ```
 
 ## Dependencies 
