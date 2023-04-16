@@ -57,7 +57,7 @@ class Checkout extends Component {
         orderDetails.name = this.state.userData.name;
         orderDetails.email = this.state.userData.email;
         orderDetails.phone = this.state.userData.phone;
-        orderDetails.date = d.getDay() + '/' + d.getMonth() + '/' + d.getFullYear();
+        orderDetails.date = d.getDate() + '/' + (d.getMonth() +1) + '/' + d.getFullYear();
         orderDetails._id = (Math.random() * 99999999 * (d.getDay() + d.getMonth() + d.getFullYear() + Math.random() * 9999)).toFixed(0);
             // '_id' is the unique id of this item in database, although MongoDB creates an _id by itself but I encountered that when ordering same item
             // from same account, more than once, the mongoDB's algorithm creates same ID for the new order also
